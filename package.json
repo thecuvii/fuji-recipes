@@ -1,0 +1,51 @@
+{
+  "name": "fuji-recipes-parser",
+  "version": "1.0.0",
+  "packageManager": "pnpm@9.11.0",
+  "description": "A library to extract film simulation data from EXIF",
+  "author": "cuvii <i@cuvii.dev>",
+  "license": "MIT",
+  "keywords": [
+    "fuji",
+    "makernote",
+    "fujifilm",
+    "exif",
+    "film simulation"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.mts",
+        "default": "./dist/es/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.mjs",
+  "types": "./dist/cjs/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "build": "bunchee",
+    "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3"
+
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.7.3",
+    "bunchee": "^5.5.1",
+    "eslint": "^9.12.0",
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.2"
+  }
+}
