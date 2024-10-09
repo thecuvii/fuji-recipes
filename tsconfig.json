@@ -5,13 +5,9 @@
     "composite": true,
     "target": "es2022",
 
-
-
     /* If your code doesn't run in the DOM: */
     "lib": ["es2022"],
     "moduleDetection": "force",
-
-
 
     /* If NOT transpiling with TypeScript: */
     "module": "preserve",
@@ -35,7 +31,8 @@
     "skipLibCheck": true
   },
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    "vitest.config.mts"
   ],
-  "exclude": ["node_modules","build","dist","out",".next",".vercel"]
+  "exclude": ["node_modules", "build", "dist", "out", ".next", ".vercel"]
 }
