@@ -1,4 +1,4 @@
-import { DYNAMIC_RANGE_SETTING_VALUES, TAG_ID_CLARITY, TAG_ID_COLOR_CHROME_EFFECT, TAG_ID_COLOR_CHROME_FX_BLUE, TAG_ID_COLOR_TEMPERATURE, TAG_ID_DEVELOPMENT_DYNAMIC_RANGE, TAG_ID_DYNAMIC_RANGE_SETTING, TAG_ID_FILM_MODE, TAG_ID_GRAIN_EFFECT_ROUGHNESS, TAG_ID_GRAIN_EFFECT_SIZE, TAG_ID_HIGHLIGHT_TONE, TAG_ID_NOISE_REDUCTION, TAG_ID_SATURATION, TAG_ID_SHADOW_TONE, TAG_ID_SHARPNESS, TAG_ID_WHITE_BALANCE, TAG_ID_WHITE_BALANCE_FINE_TUNE, WHITE_BALANCE_VALUES } from './constants'
+import { DYNAMIC_RANGE_SETTING_VALUES, type DynamicRangeSetting, TAG_ID_CLARITY, TAG_ID_COLOR_CHROME_EFFECT, TAG_ID_COLOR_CHROME_FX_BLUE, TAG_ID_COLOR_TEMPERATURE, TAG_ID_DEVELOPMENT_DYNAMIC_RANGE, TAG_ID_DYNAMIC_RANGE_SETTING, TAG_ID_FILM_MODE, TAG_ID_GRAIN_EFFECT_ROUGHNESS, TAG_ID_GRAIN_EFFECT_SIZE, TAG_ID_HIGHLIGHT_TONE, TAG_ID_NOISE_REDUCTION, TAG_ID_SATURATION, TAG_ID_SHADOW_TONE, TAG_ID_SHARPNESS, TAG_ID_WHITE_BALANCE, TAG_ID_WHITE_BALANCE_FINE_TUNE, WHITE_BALANCE_VALUES, type WhiteBalance, type WhiteBalanceFineTune } from './constants'
 import type { parse } from './parse'
 import { tags } from './tags'
 
@@ -9,10 +9,10 @@ export function formatResult(parsed: ReturnType<typeof parse>) {
     [tags[TAG_ID_GRAIN_EFFECT_SIZE].name]: parsed.GrainEffectSize,
     [tags[TAG_ID_COLOR_CHROME_EFFECT].name]: parsed.ColorChromeEffect,
     [tags[TAG_ID_COLOR_CHROME_FX_BLUE].name]: parsed.ColorChromeFxBlue,
-    [tags[TAG_ID_WHITE_BALANCE].name]: parsed.WhiteBalance,
-    Red: '',
-    Blue: '',
-    DynamicRange: parsed.DynamicRangeSetting,
+    [tags[TAG_ID_WHITE_BALANCE].name]: parsed.WhiteBalance as WhiteBalance | `${number}K`,
+    Red: '0' as WhiteBalanceFineTune,
+    Blue: '0' as WhiteBalanceFineTune,
+    DynamicRange: parsed.DynamicRangeSetting as DynamicRangeSetting | 'DR100' | 'DR200' | 'DR400',
     [tags[TAG_ID_HIGHLIGHT_TONE].name]: parsed.HighlightTone,
     [tags[TAG_ID_SHADOW_TONE].name]: parsed.ShadowTone,
     [tags[TAG_ID_SATURATION].name]: parsed.Saturation,
@@ -24,8 +24,8 @@ export function formatResult(parsed: ReturnType<typeof parse>) {
   const whiteBalanceFineTuneName = tags[TAG_ID_WHITE_BALANCE_FINE_TUNE].name
   const whiteBalanceFineTune = parsed[whiteBalanceFineTuneName]
   if (whiteBalanceFineTune) {
-    result.Red = formatWhiteBalanceFineTune(whiteBalanceFineTune[0])
-    result.Blue = formatWhiteBalanceFineTune(whiteBalanceFineTune[1])
+    result.Red = formatWhiteBalanceFineTune(whiteBalanceFineTune[0] as number)
+    result.Blue = formatWhiteBalanceFineTune(whiteBalanceFineTune[1] as number)
   }
 
   const whiteBalanceName = tags[TAG_ID_WHITE_BALANCE].name
@@ -41,12 +41,12 @@ export function formatResult(parsed: ReturnType<typeof parse>) {
   const developmentRangeName = tags[TAG_ID_DEVELOPMENT_DYNAMIC_RANGE].name
   const developmentRange = parsed[developmentRangeName]
   if (dynamicRangeSetting === DYNAMIC_RANGE_SETTING_VALUES[1]) {
-    result.DynamicRange = `DR${developmentRange}`
+    result.DynamicRange = `DR${developmentRange}` as any
   }
 
   return result
 }
 
 function formatWhiteBalanceFineTune(value: number) {
-  return value > 0 ? `+${value / 10}` : `${value / 10}`
+  return (value > 0 ? `+${value / 10}` : `${value / 10}`) as WhiteBalanceFineTune
 }

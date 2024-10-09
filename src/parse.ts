@@ -1,17 +1,18 @@
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import type { Buffer } from 'buffer'
-import { type TagName, tags } from './tags'
+import { type ParsedTags, type TagName, tags } from './tags'
 
 export function parse(makerNote: Buffer) {
   const result: Record<TagName, any> = {} as any
   parseFujifilmMakerNote(makerNote, (tagId, value) => {
     const tag = tags[tagId as keyof typeof tags]
     if (tag) {
-      result[tag.name] = tag.parser(value, makerNote)
+      const parsedValue = tag.parser(value, makerNote)
+      result[tag.name] = parsedValue
     }
   })
 
-  return result
+  return result as ParsedTags
 }
 
 const BYTE_INDEX_TAG_COUNT = 12

@@ -4,6 +4,20 @@ import { CLARITY_VALUES, COLOR_CHROME_EFFECT_VALUES, COLOR_CHROME_FX_BLUE_VALUES
 
 type Parser = (input: number, buffer: Buffer) => any
 
+interface TagDefinition {
+  name: string
+  parser: Parser
+}
+
+type TagMap = typeof tags
+
+type TagNameToValueMap = {
+  [K in keyof TagMap]: {
+    name: TagMap[K]['name']
+    value: ReturnType<TagMap[K]['parser']>
+  }
+}
+
 export const tags = {
   [TAG_ID_FILM_MODE]: {
     name: 'FilmMode' as const,
@@ -71,6 +85,10 @@ export const tags = {
     name: 'Clarity' as const,
     parser: input => CLARITY_VALUES[input as unknown as keyof typeof CLARITY_VALUES],
   },
-} satisfies Record<string, { name: string, parser: Parser }>
+} satisfies Record<string, TagDefinition>
 
 export type TagName = typeof tags extends Record<string, { name: infer N }> ? N : never
+
+export type ParsedTags = {
+  [K in keyof TagNameToValueMap as TagNameToValueMap[K]['name']]: TagNameToValueMap[K]['value']
+}

@@ -1,5 +1,7 @@
 // https://exiftool.org/TagNames/FujiFilm.html
 
+import type { ValueOf } from './types'
+
 export const TAG_ID_FILM_MODE = 0x1401
 export const FILM_MODE_VALUES = {
   0x0: 'F0/Standard (Provia)',
@@ -20,12 +22,16 @@ export const FILM_MODE_VALUES = {
   0xB00: 'Reala ACE',
 } as const
 
+export type FilmMode = ValueOf<typeof FILM_MODE_VALUES>
+
 export const TAG_ID_GRAIN_EFFECT_ROUGHNESS = 0x1047
 export const GRAIN_EFFECT_ROUGHNESS_VALUES = {
   0x0: 'Off',
   0x20: 'Weak',
   0x40: 'Strong',
 } as const
+
+export type GrainEffectRoughness = ValueOf<typeof GRAIN_EFFECT_ROUGHNESS_VALUES>
 
 export const TAG_ID_GRAIN_EFFECT_SIZE = 0x104C
 export const GRAIN_EFFECT_SIZE_VALUES = {
@@ -34,12 +40,16 @@ export const GRAIN_EFFECT_SIZE_VALUES = {
   0x20: 'Large',
 } as const
 
+export type GrainEffectSize = ValueOf<typeof GRAIN_EFFECT_SIZE_VALUES>
+
 export const TAG_ID_COLOR_CHROME_EFFECT = 0x1048
 export const COLOR_CHROME_EFFECT_VALUES = {
   0x0: 'Off',
   0x20: 'Weak',
   0x40: 'Strong',
 } as const
+
+export type ColorChromeEffect = ValueOf<typeof COLOR_CHROME_EFFECT_VALUES>
 
 export const TAG_ID_COLOR_CHROME_FX_BLUE = 0x104E
 export const COLOR_CHROME_FX_BLUE_VALUES = {
@@ -48,6 +58,7 @@ export const COLOR_CHROME_FX_BLUE_VALUES = {
   0x40: 'Strong',
 } as const
 
+export type ColorChromeFxBlue = ValueOf<typeof COLOR_CHROME_FX_BLUE_VALUES>
 export const TAG_ID_WHITE_BALANCE = 0x1002
 export const WHITE_BALANCE_VALUES = {
   0x0: 'Auto',
@@ -71,9 +82,12 @@ export const WHITE_BALANCE_VALUES = {
   0xFF0: 'Kelvin',
 } as const
 
+export type WhiteBalance = ValueOf<typeof WHITE_BALANCE_VALUES>
+
 export const TAG_ID_COLOR_TEMPERATURE = 0x1005
 
 export const TAG_ID_WHITE_BALANCE_FINE_TUNE = 0x100A
+export type WhiteBalanceFineTune = '-9' | '-8' | '-7' | '-6' | '-5' | '-4' | '-3' | '-2' | '-1' | '0' | '+1' | '+2' | '+3' | '+4' | '+5' | '+6' | '+7' | '+8' | '+9'
 
 export const TAG_ID_DYNAMIC_RANGE_SETTING = 0x1402
 export const DYNAMIC_RANGE_SETTING_VALUES = {
@@ -84,6 +98,8 @@ export const DYNAMIC_RANGE_SETTING_VALUES = {
   0x201: 'Wide2 (400%)',
   0x8000: 'Film Simulation',
 } as const
+
+export type DynamicRangeSetting = ValueOf<typeof DYNAMIC_RANGE_SETTING_VALUES>
 
 export const TAG_ID_DEVELOPMENT_DYNAMIC_RANGE = 0x1403
 
@@ -97,6 +113,8 @@ export const TONE_VALUES = {
   '16': '-1',
   '32': '-2',
 } as const
+
+export type Tone = ValueOf<typeof TONE_VALUES>
 
 export const TAG_ID_SHADOW_TONE = 0x1040
 
@@ -123,7 +141,9 @@ export const SATURATION_VALUES = {
   0x502: 'Acros Yellow Filter',
   0x503: 'Acros Green Filter',
   0x8000: 'Film Simulation',
-}
+} as const
+
+export type Saturation = ValueOf<typeof SATURATION_VALUES>
 
 export const TAG_ID_SHARPNESS = 0x1001
 export const SHARPNESS_VALUES = {
@@ -140,6 +160,8 @@ export const SHARPNESS_VALUES = {
   0xFFFF: 'n/a',
 } as const
 
+export type Sharpness = ValueOf<typeof SHARPNESS_VALUES>
+
 export const TAG_ID_NOISE_REDUCTION = 0x100E
 export const NOISE_REDUCTION_VALUES = {
   0x0: '0',
@@ -153,6 +175,8 @@ export const NOISE_REDUCTION_VALUES = {
   0x2E0: '-4',
 } as const
 
+export type NoiseReduction = ValueOf<typeof NOISE_REDUCTION_VALUES>
+
 export const TAG_ID_CLARITY = 0x100F
 export const CLARITY_VALUES = {
   '-5000': '-5',
@@ -165,3 +189,5 @@ export const CLARITY_VALUES = {
   '2000': '+2',
   '3000': '+3',
 } as const
+
+export type Clarity = ValueOf<typeof CLARITY_VALUES>
