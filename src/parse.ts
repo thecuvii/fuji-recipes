@@ -1,6 +1,7 @@
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import type { Buffer } from 'buffer'
-import { type ParsedTags, type TagName, tags } from './tags'
+import type { ParsedTags, TagName } from './tags'
+import { tags } from './tags'
 
 export function parse(makerNote: Buffer) {
   const result: Record<TagName, any> = {} as any

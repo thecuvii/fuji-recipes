@@ -1,7 +1,7 @@
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import { Buffer } from 'buffer'
-import { parse } from './parse'
 import { format } from './format'
+import { parse } from './parse'
 
 /**
  * Get the recipe from a Fujifilm maker note.
