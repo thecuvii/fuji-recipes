@@ -1,24 +1,19 @@
 {
   "compilerOptions": {
 
-    /* AND if you're building for a library in a monorepo: */
     "composite": true,
     "target": "es2022",
 
-    /* If your code doesn't run in the DOM: */
-    "lib": ["es2022"],
+    "lib": ["es2022", "DOM"],
     "moduleDetection": "force",
 
-    /* If NOT transpiling with TypeScript: */
     "module": "preserve",
     "resolveJsonModule": true,
     "allowJs": true,
-    /* Strictness */
     "strict": true,
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
 
-    /* AND if you're building for a library: */
     "declaration": true,
     "declarationMap": true,
     "noEmit": true,
@@ -32,7 +27,8 @@
   },
   "include": [
     "**/*.ts",
-    "vitest.config.mts"
+    "vitest.config.mts",
+    "playground/index.mts"
   ],
   "exclude": ["node_modules", "build", "dist", "out", ".next", ".vercel"]
 }
