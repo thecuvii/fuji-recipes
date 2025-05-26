@@ -8,7 +8,7 @@ import { format } from './format'
  * @param makerNote - The maker note as a buffer.
  */
 export function getRecipe(makerNote: Buffer | number[]) {
-  const buffer = Array.isArray(makerNote) ? Buffer.from(makerNote) : makerNote
+  const buffer = Buffer.isBuffer(makerNote) ? makerNote : Buffer.from(makerNote)
   return format(parse(buffer))
 }
 

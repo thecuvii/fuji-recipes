@@ -27,8 +27,7 @@
   },
   "include": [
     "**/*.ts",
-    "vitest.config.mts",
-    "playground/index.mts"
+    "vitest.config.mts"
   ],
   "exclude": ["node_modules", "build", "dist", "out", ".next", ".vercel"]
 }
