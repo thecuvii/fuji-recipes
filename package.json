@@ -5,12 +5,12 @@
   "description": "A library to extract film simulation data from EXIF",
   "author": "cuvii <i@cuvii.dev>",
   "license": "MIT",
-  "homepage": "https://github.com/cuvii/fuji-recipes#readme",
+  "homepage": "https://github.com/thecuvii/fuji-recipes#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cuvii/fuji-recipes.git"
+    "url": "git+https://github.com/thecuvii/fuji-recipes.git"
   },
-  "bugs": "https://github.com/cuvii/fuji-recipes/issues",
+  "bugs": "https://github.com/thecuvii/fuji-recipes/issues",
   "keywords": [
     "fuji",
     "makernote",
