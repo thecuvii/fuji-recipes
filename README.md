@@ -55,23 +55,23 @@ console.log(recipe)
 
 ### Example Output
 
-```javascript
+```json
 {
-  FilmMode: 'Classic Chrome',
-  GrainEffectRoughness: 'Off',
-  GrainEffectSize: 'Off',
-  ColorChromeEffect: 'Off',
-  ColorChromeFxBlue: 'Strong',
-  WhiteBalance: '5500K',
-  Red: '-1',
-  Blue: '+1',
-  DynamicRange: 'DR400',
-  HighlightTone: '-1',
-  ShadowTone: '-1',
-  Saturation: '+1',
-  Sharpness: '0',
-  NoiseReduction: '0',
-  Clarity: '0'
+  "FilmMode": "Classic Chrome",
+  "GrainEffectRoughness": "Off",
+  "GrainEffectSize": "Off",
+  "ColorChromeEffect": "Off",
+  "ColorChromeFxBlue": "Strong",
+  "WhiteBalance": "5500K",
+  "Red": "-1",
+  "Blue": "+1",
+  "DynamicRange": "DR400",
+  "HighlightTone": "-1",
+  "ShadowTone": "-1",
+  "Saturation": "+1",
+  "Sharpness": "0",
+  "NoiseReduction": "0",
+  "Clarity": "0"
 }
 ```
 
@@ -134,6 +134,13 @@ The library includes comprehensive tests with real maker note data:
 ```bash
 pnpm test
 ```
+
+## References
+
+This library is based on the Fujifilm MakerNote tag specifications:
+
+- [Exiv2 Fujifilm MakerNote Tags](https://exiv2.org/tags-fujifilm.html) - Comprehensive reference for Fujifilm EXIF MakerNote tags
+- [ExifTool MakerNote Types](https://exiftool.org/makernote_types.html) - Database of MakerNote formats for various camera manufacturers
 
 ## License
 
