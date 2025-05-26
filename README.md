@@ -9,15 +9,7 @@ This library parses Fujifilm camera maker notes from EXIF data to extract film s
 ## Installation
 
 ```bash
-npm install fuji-recipes-parser
-```
-
-```bash
 pnpm add fuji-recipes-parser
-```
-
-```bash
-yarn add fuji-recipes-parser
 ```
 
 ## Usage
@@ -25,22 +17,45 @@ yarn add fuji-recipes-parser
 ### Basic Usage
 
 ```typescript
-import getRecipe, { } from 'fuji-recipes-parser'
-// or
 import getRecipe from 'fuji-recipes-parser'
 
-// From a Buffer
-const makerNote = Buffer.from([/* maker note bytes */])
+const makerNote = [] // You can get makerNote using exifr or other tools.
 const recipe = getRecipe(makerNote)
+```
 
-// From a number array
-const makerNoteArray = [/* maker note bytes as numbers */]
-const recipe = getRecipe(makerNoteArray)
+### Real-world Usage with EXIF Extraction
+
+To extract maker notes from actual photos, you'll need an EXIF parsing library like `exifr`:
+
+```bash
+npm install exifr
+```
+
+```typescript
+import fs from 'node:fs/promises'
+import exifr from 'exifr'
+import getRecipe from 'fuji-recipes-parser'
+
+async function extractRecipeFromPhoto(photoPath: string) {
+  const photo = await fs.readFile(photoPath)
+  const exif = await exifr.parse(photo, { makerNote: true })
+
+  if (exif.makerNote) {
+    const recipe = getRecipe(exif.makerNote)
+    return recipe
+  }
+
+  throw new Error('No maker note found in the photo')
+}
+
+// Usage
+const recipe = await extractRecipeFromPhoto('./fuji-photo.jpg')
+console.log(recipe)
 ```
 
 ### Example Output
 
-```typescript
+```javascript
 {
   FilmMode: 'Classic Chrome',
   GrainEffectRoughness: 'Off',
@@ -48,8 +63,8 @@ const recipe = getRecipe(makerNoteArray)
   ColorChromeEffect: 'Off',
   ColorChromeFxBlue: 'Strong',
   WhiteBalance: '5500K',
-  Red: '-6',
-  Blue: '+6',
+  Red: '-1',
+  Blue: '+1',
   DynamicRange: 'DR400',
   HighlightTone: '-1',
   ShadowTone: '-1',
@@ -64,21 +79,21 @@ const recipe = getRecipe(makerNoteArray)
 
 The library extracts the following camera settings:
 
-- **FilmMode**: Film simulation mode (e.g., 'Classic Chrome', 'Classic Negative')
-- **GrainEffectRoughness**: Grain effect intensity ('Off', 'Weak', 'Strong')
-- **GrainEffectSize**: Grain size ('Off', 'Small', 'Large')
-- **ColorChromeEffect**: Color chrome effect setting ('Off', 'Weak', 'Strong')
-- **ColorChromeFxBlue**: Blue color chrome effect ('Off', 'Weak', 'Strong')
-- **WhiteBalance**: White balance setting (e.g., 'Daylight', '5500K')
-- **Red**: Red white balance fine-tune (e.g., '-6', '+8')
-- **Blue**: Blue white balance fine-tune (e.g., '+6', '-14')
-- **DynamicRange**: Dynamic range setting ('DR100', 'DR200', 'DR400')
-- **HighlightTone**: Highlight tone adjustment (-2 to +4)
-- **ShadowTone**: Shadow tone adjustment (-2 to +4)
-- **Saturation**: Color saturation adjustment (-4 to +4)
-- **Sharpness**: Sharpness setting (-4 to +4)
-- **NoiseReduction**: Noise reduction level (-4 to +4)
-- **Clarity**: Clarity adjustment (-5 to +5)
+- **FilmMode**: Film simulation mode
+- **GrainEffectRoughness**: Grain effect intensity
+- **GrainEffectSize**: Grain size
+- **ColorChromeEffect**: Color chrome effect setting
+- **ColorChromeFxBlue**: Blue color chrome effect
+- **WhiteBalance**: White balance setting
+- **Red**: Red white balance fine-tune
+- **Blue**: Blue white balance fine-tune
+- **DynamicRange**: Dynamic range setting
+- **HighlightTone**: Highlight tone adjustment
+- **ShadowTone**: Shadow tone adjustment
+- **Saturation**: Color saturation adjustment
+- **Sharpness**: Sharpness setting
+- **NoiseReduction**: Noise reduction level
+- **Clarity**: Clarity adjustment
 
 ## API Reference
 
