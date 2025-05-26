@@ -31,7 +31,8 @@
     "test": "vitest",
     "build": "bunchee",
     "prepack": "pnpm run build",
-    "play": "tsx playground/index.ts"
+    "play": "tsx playground/index.ts",
+    "release": "bumpp && pnpm publish"
   },
   "dependencies": {
     "buffer": "^6.0.3"
