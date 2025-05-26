@@ -111,7 +111,7 @@ Extracts recipe data from a Fujifilm maker note.
 
 ### Prerequisites
 
-- Node.js 16+
+- Node.js 20+
 - pnpm
 
 ### Setup
