@@ -2,7 +2,7 @@ import { DYNAMIC_RANGE_SETTING_VALUES, type DynamicRangeSetting, TAG_ID_CLARITY,
 import type { parse } from './parse'
 import { tags } from './tags'
 
-export function formatResult(parsed: ReturnType<typeof parse>) {
+export function format(parsed: ReturnType<typeof parse>) {
   const result = {
     [tags[TAG_ID_FILM_MODE].name]: parsed.FilmMode,
     [tags[TAG_ID_GRAIN_EFFECT_ROUGHNESS].name]: parsed.GrainEffectRoughness,

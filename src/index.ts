@@ -1,7 +1,7 @@
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import { Buffer } from 'buffer'
 import { parse } from './parse'
-import { formatResult } from './format'
+import { format } from './format'
 
 /**
  * Get the recipe from a Fujifilm maker note.
@@ -9,7 +9,7 @@ import { formatResult } from './format'
  */
 export function getRecipe(makerNote: Buffer | number[]) {
   const buffer = Array.isArray(makerNote) ? Buffer.from(makerNote) : makerNote
-  return formatResult(parse(buffer))
+  return format(parse(buffer))
 }
 
 export default getRecipe
