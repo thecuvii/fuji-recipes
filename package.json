@@ -1,10 +1,16 @@
 {
-  "name": "fuji-recipes-parser",
+  "name": "fuji-recipes",
   "version": "1.0.0",
   "packageManager": "pnpm@10.11.0",
   "description": "A library to extract film simulation data from EXIF",
   "author": "cuvii <i@cuvii.dev>",
   "license": "MIT",
+  "homepage": "https://github.com/cuvii/fuji-recipes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuvii/fuji-recipes.git"
+  },
+  "bugs": "https://github.com/cuvii/fuji-recipes/issues",
   "keywords": [
     "fuji",
     "makernote",
@@ -12,16 +18,12 @@
     "exif",
     "film simulation"
   ],
+  "sideEffects": false,
   "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.mjs"
-      }
-    }
+    ".": "./dist/index.mjs"
   },
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.2",
     "@types/node": "^22.15.21",
+    "bumpp": "^10.1.1",
     "bunchee": "^6.5.2",
     "eslint": "^9.27.0",
     "exifr": "^7.1.3",

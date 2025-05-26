@@ -9,7 +9,7 @@ This library parses Fujifilm camera maker notes from EXIF data to extract film s
 ## Installation
 
 ```bash
-pnpm add fuji-recipes-parser
+pnpm add fuji-recipes
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ pnpm add fuji-recipes-parser
 ### Basic Usage
 
 ```typescript
-import getRecipe from 'fuji-recipes-parser'
+import getRecipe from 'fuji-recipes'
 
 const makerNote = [] // You can get makerNote using exifr or other tools.
 const recipe = getRecipe(makerNote)
@@ -34,7 +34,7 @@ npm install exifr
 ```typescript
 import fs from 'node:fs/promises'
 import exifr from 'exifr'
-import getRecipe from 'fuji-recipes-parser'
+import getRecipe from 'fuji-recipes'
 
 async function extractRecipeFromPhoto(photoPath: string) {
   const photo = await fs.readFile(photoPath)
