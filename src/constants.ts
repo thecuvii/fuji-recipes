@@ -106,11 +106,17 @@ export const TAG_ID_DEVELOPMENT_DYNAMIC_RANGE = 0x1403
 export const TAG_ID_HIGHLIGHT_TONE = 0x1041
 export const TONE_VALUES = {
   '-64': '+4',
+  '-56': '+3.5',
   '-48': '+3',
+  '-40': '+2.5',
   '-32': '+2',
+  '-24': '+1.5',
   '-16': '+1',
+  '-8': '+0.5',
   '0': '0',
+  '8': '-0.5',
   '16': '-1',
+  '24': '-1.5',
   '32': '-2',
 } as const
 
